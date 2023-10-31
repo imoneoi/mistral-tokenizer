@@ -1,25 +1,25 @@
 {
-  "name": "llama-tokenizer-js",
-  "version": "1.1.3",
-  "description": "JS tokenizer for LLaMA-based LLMs",
-  "main": "llama-tokenizer.js",
+  "name": "mistral-tokenizer-js",
+  "version": "1.0.0",
+  "description": "JS tokenizer for Mistral-based LLMs",
+  "main": "mistral-tokenizer.js",
   "scripts": {
-    "test": "node test-llama-tokenizer.js"
+    "test": "node test-mistral-tokenizer.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/belladoreai/llama-tokenizer.git"
+    "url": "git+https://github.com/imoneoi/mistral-tokenizer.git"
   },
   "keywords": [
-    "llama",
+    "mistral",
     "llm",
     "tokenizer"
   ],
   "type": "module",
-  "author": "Belladore <135602125+belladoreai@users.noreply.github.com> (https://belladore.ai/tools)",
+  "author": "One <imonenext@gmail.com> (https://github.com/imoneoi)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/belladoreai/llama-tokenizer/issues"
+    "url": "https://github.com/imoneoi/mistral-tokenizer/issues"
   },
-  "homepage": "https://github.com/belladoreai/llama-tokenizer#readme"
+  "homepage": "https://github.com/imoneoi/mistral-tokenizer#readme"
 }

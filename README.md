@@ -1,15 +1,15 @@
-# 🦙 llama-tokenizer-js 🦙
+# 🌬️ mistral-tokenizer-js 🌬️
 
-The first JavaScript tokenizer for LLaMA which works client-side in the browser (and also in Node).
+The first JavaScript tokenizer for Mistral which works client-side in the browser (and also in Node).
 
 Intended use case is calculating token count accurately on the client-side.
 
-<a href="https://belladoreai.github.io/llama-tokenizer-js/example-demo/build/">Click here for demo</a>
+<a href="https://imoneoi.github.io/mistral-tokenizer-js/example-demo/build/">Click here for demo</a>
 
 ## Features
 
 - Easy to use: 0 dependencies, code and data baked into a single file.
-- Compatible with most LLaMA models (see [Compatibility](#compatibility))
+- Compatible with most Mistral models (see [Compatibility](#compatibility))
 - Optimized running time: tokenize a sentence in roughly 1ms, or 2000 tokens in roughly 20ms.
 - Optimized bundle size: 670KiB before minification and gzipping (the heaviest part of the tokenizer, merge data, has been compressed into a simple and efficient binary format, and then base64-encoded to bake it into the .js file)
 
@@ -18,45 +18,45 @@ Intended use case is calculating token count accurately on the client-side.
 Option 1: Install as an npm package and import as ES6 module
 
 ```
-npm install llama-tokenizer-js
+npm install mistral-tokenizer-js
 ```
 
 ```
-import llamaTokenizer from 'llama-tokenizer-js'
+import mistralTokenizer from 'mistral-tokenizer-js'
 
-console.log(llamaTokenizer.encode("Hello world!").length)
+console.log(mistralTokenizer.encode("Hello world!").length)
 ```
 
 Option 2: Load as ES6 module with `<script>` tags in your HTML
 
 ```
-<script type="module" src="https://belladoreai.github.io/llama-tokenizer-js/llama-tokenizer.js"></script>
+<script type="module" src="https://imoneoi.github.io/mistral-tokenizer-js/mistral-tokenizer.js"></script>
 ```
 
 ## Usage
 
 Once you have the module imported, you can encode or decode with it. Training is not supported.
 
-When used in browser, llama-tokenizer-js pollutes global namespace with `llamaTokenizer`.
+When used in browser, mistral-tokenizer-js pollutes global namespace with `mistralTokenizer`.
 
 Encode:
 
 ```
-llamaTokenizer.encode("Hello world!")
-> [1, 15043, 3186, 29991]
+mistralTokenizer.encode("Hello world!")
+> [1, 22557, 1526, 28808]
 ```
 
 Decode:
 
 ```
-llamaTokenizer.decode([1, 15043, 3186, 29991])
+mistralTokenizer.decode([1, 22557, 1526, 28808])
 > 'Hello world!'
 ```
 
 Note that special "beginning of sentence" token and preceding space are added by default when encoded (and correspondingly expected when decoding). These affect token count. There may be some use cases where you don't want to add these. You can pass additional boolean parameters in these use cases. For example, if you want to decode an individual token:
 
 ```
-llamaTokenizer.decode([3186], false, false)
+mistralTokenizer.decode([16230], false, false)
 > 'Hello'
 ```
 
@@ -65,7 +65,7 @@ llamaTokenizer.decode([3186], false, false)
 You can run tests with:
 
 ```
-llamaTokenizer.runTests()
+mistralTokenizer.runTests()
 ```
 
 The test suite is small, but it covers different edge cases very well.
@@ -74,34 +74,27 @@ Note that tests can be run both in browser and in Node (this is necessary becaus
 
 ## Comparison to alternatives
 
-As mentioned, llama-tokenizer-js is the first JavaScript tokenizer for LLaMA which works client-side in the browser. You might be wondering, what are people currently using to count tokens in web applications?
+As mentioned, mistral-tokenizer-js is the first JavaScript tokenizer for Mistral which works client-side in the browser. You might be wondering, what are people currently using to count tokens in web applications?
 
-- Many web applications currently use client-side JavaScript libraries for other, _incompatible_ tokenizers. In particular, OpenAI's tokenizers are popular (see [tiktoken](https://www.npmjs.com/package/@dqbd/tiktoken) and [gpt-tokenizer](https://www.npmjs.com/package/gpt-tokenizer)). It's not entirely clear to me why people using LLaMA would want to count tokens with an OpenAI tokenizer that is not compatible with LLaMA. I guess people are assuming that there's not much difference between tokenizers? However, in my own testing I discovered that the token counts will commonly differ by as much as 20% between these tokenizers. So you can get a _very rough_ approximation of LLaMA token count by using an OpenAI tokenizer.
-- Some web applications make network calls to Python applications that run the Huggingface transformers tokenizer. For example, the oobabooga-text-webui exposes an API endpoint for token count. The drawback of this approach is latency: although the Python tokenizer itself is very fast, oobabooga adds a lot of overhead. In my testing, making a network call to locally running oobabooga to count tokens for short Strings of text took roughly 300ms (compared to ~1ms when counting tokens client-side with llama-tokenizer-js). The latency will be even higher when a real web client is making requests over the internet. The latency issue is even worse if an application needs to iteratively trim down a prompt to get it to fit within a context limit, requiring multiple network calls.
+- Many web applications currently use client-side JavaScript libraries for other, _incompatible_ tokenizers. In particular, OpenAI's and LLaMA's tokenizers are popular. It's not entirely clear to me why people using Mistral would want to count tokens with a tokenizer that is not compatible with Mistral. However, in my own testing I discovered that the token counts will commonly differ by as much as 20% between these tokenizers. So you can get a _very rough_ approximation of Mistral token count by using an OpenAI or LLaMA tokenizer.
+- Some web applications make network calls to Python applications that run the Huggingface transformers tokenizer. The drawback of this approach is latency: although the Python tokenizer itself is very fast, the network call adds a lot of overhead. In my testing, making a network call to count tokens for short Strings of text took roughly 300ms (compared to ~1ms when counting tokens client-side with mistral-tokenizer-js). The latency issue is even worse if an application needs to iteratively trim down a prompt to get it to fit within a context limit, requiring multiple network calls.
 
 ## Compatibility
 
-The tokenizer used by LLaMA is a SentencePiece Byte-Pair Encoding tokenizer.
+The tokenizer used by Mistral is a SentencePiece Byte-Pair Encoding tokenizer.
 
-Note that this is a tokenizer for LLaMA models, and it's different than the tokenizers used by OpenAI models. If you need a tokenizer for OpenAI models, I recommend [gpt-tokenizer](https://www.npmjs.com/package/gpt-tokenizer).
+Note that this is a tokenizer for Mistral models, and it's different than the tokenizers used by OpenAI and LLaMA models. If you need a tokenizer for OpenAI or LLaMA models, I recommend their respective tokenizers.
 
-What is this tokenizer compatible with? All LLaMA models which have been trained on top of checkpoints (model weights) released by Facebook in March 2023 ("LLaMA") and July of 2023 ("LLaMA2").
+What is this tokenizer compatible with? Mistral-7B and finetunes
 
-Examples of compatible models:
-- llama2-13b-4bit-gptq
-- wizard-vicuna-13b-uncensored-gptq
-- manticore-7b-ggml
+When you see a new Mistral model released, this tokenizer is mostly likely compatible with it without any modifications. If you are unsure, try it and see if the token ids are the same (compared to running the model with, for example, the official webui). You can find great test input/output samples by searching for `runTests` inside `mistral-tokenizer.js`.
 
-Incompatible LLaMA models are those which have been trained from scratch, not on top of the checkpoints released by Facebook. For example, [OpenLLaMA](https://github.com/openlm-research/open_llama) models are incompatible.
+## Adding support for incompatible Mistral models
 
-When you see a new LLaMA model released, this tokenizer is mostly likely compatible with it without any modifications. If you are unsure, try it and see if the token ids are the same (compared to running the model with, for example, oobabooga webui). You can find great test input/output samples by searching for `runTests` inside `llama-tokenizer.js`.
-
-## Adding support for incompatible LLaMA models
-
-If you want to modify this library to support a new LLaMA tokenizer (new as in trained from scratch, not using the same tokenizer as most LLaMA models do), you should be able to do so by swapping the vocabulary and merge data (the 2 long variables near the end of `llama-tokenizer.js` file). Below is Python code that you can use for this.
+If you want to modify this library to support a new Mistral tokenizer (new as in trained from scratch, not using the same tokenizer as most Mistral models do), you should be able to do so by swapping the vocabulary and merge data (the 2 long variables near the end of `mistral-tokenizer.js` file). Below is Python code that you can use for this.
 
 ```
-# Load the tokenizer.json file that was distributed with the LLaMA model
+# Load the tokenizer.json file that was distributed with the Mistral model
 d = None
 with open(r"tokenizer.json", 'r', encoding='utf-8') as f:
     d = json.load(f)
@@ -148,6 +141,4 @@ with open('merges_binary.bin', 'wb') as file:
 
 ## Credit
 
-You are free to use llama-tokenizer-js for basically whatever you want (MIT license).
-
-You are not required to give anything in exchange, but I kindly ask that you give back by linking to [https://belladore.ai/tools](https://belladore.ai/tools) in an appropriate place in your website. For example, you might link with the text "Using llama-tokenizer-js by belladore.ai" or something similar.
+You are free to use mistral-tokenizer-js for basically whatever you want (MIT license).
