@@ -1,22 +1,22 @@
 {
-  "name": "mistral-tokenizer-js",
+  "name": "mistral-tokenizer-ts",
   "version": "1.0.0",
-  "description": "JS tokenizer for Mistral-based LLMs",
+  "description": "TS tokenizer for Mistral-based LLMs",
   "keywords": [
     "mistral",
     "llm",
     "tokenizer"
   ],
-  "homepage": "https://github.com/imoneoi/mistral-tokenizer#readme",
+  "homepage": "https://github.com/aknorw/mistral-tokenizer",
   "bugs": {
-    "url": "https://github.com/imoneoi/mistral-tokenizer/issues"
+    "url": "https://github.com/aknorw/mistral-tokenizer/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/imoneoi/mistral-tokenizer.git"
+    "url": "git+https://github.com/aknorw/mistral-tokenizer.git"
   },
   "license": "MIT",
-  "author": "One <imonenext@gmail.com> (https://github.com/imoneoi)",
+  "author": "aknorw (https://github.com/aknorw)",
   "type": "module",
   "exports": {
     "default": "./dist/tokenizer.module.js",
