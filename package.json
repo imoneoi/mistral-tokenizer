@@ -2,24 +2,46 @@
   "name": "mistral-tokenizer-js",
   "version": "1.0.0",
   "description": "JS tokenizer for Mistral-based LLMs",
-  "main": "mistral-tokenizer.js",
-  "scripts": {
-    "test": "node test-mistral-tokenizer.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/imoneoi/mistral-tokenizer.git"
-  },
   "keywords": [
     "mistral",
     "llm",
     "tokenizer"
   ],
-  "type": "module",
-  "author": "One <imonenext@gmail.com> (https://github.com/imoneoi)",
-  "license": "MIT",
+  "homepage": "https://github.com/imoneoi/mistral-tokenizer#readme",
   "bugs": {
     "url": "https://github.com/imoneoi/mistral-tokenizer/issues"
   },
-  "homepage": "https://github.com/imoneoi/mistral-tokenizer#readme"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imoneoi/mistral-tokenizer.git"
+  },
+  "license": "MIT",
+  "author": "One <imonenext@gmail.com> (https://github.com/imoneoi)",
+  "type": "module",
+  "main": "mistral-tokenizer.js",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "prepare": "husky install",
+    "pretty": "prettier --config .prettierrc.json --check '**/*.{js,ts,json}'",
+    "test": "node test-mistral-tokenizer.js"
+  },
+  "lint-staged": {
+    "*.{js,ts,json}": [
+      "prettier --config .prettierrc.json --write",
+      "eslint"
+    ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.2.4",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">18"
+  }
 }
