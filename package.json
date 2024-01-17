@@ -18,8 +18,19 @@
   "license": "MIT",
   "author": "One <imonenext@gmail.com> (https://github.com/imoneoi)",
   "type": "module",
-  "main": "mistral-tokenizer.js",
+  "exports": {
+    "default": "./dist/index.module.js",
+    "import": "./dist/index.module.js",
+    "require": "./dist/index.cjs.js"
+  },
+  "main": "dist/index.cjs",
+  "unpkg": "dist/index.umd.js",
+  "module": "dist/index.module.js",
+  "source": "src/index.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "build": "rimraf dist && microbundle",
+    "dev": "microbundle watch",
     "lint": "eslint --ext .js,.ts .",
     "prepare": "husky install",
     "pretty": "prettier --config .prettierrc.json --check '**/*.{js,ts,json}'",
@@ -38,10 +49,9 @@
     "eslint-config-prettier": "^9.1.0",
     "husky": "^8.0.0",
     "lint-staged": "^15.2.0",
+    "microbundle": "^0.15.1",
     "prettier": "^3.2.4",
+    "rimraf": "^5.0.5",
     "typescript": "^5.3.3"
-  },
-  "engines": {
-    "node": ">18"
   }
 }
