@@ -1,7 +1,7 @@
 {
   "editor.codeActionsOnSave": {
-    "source.fixAll": true,
-    "source.fixAll.ts": false
+    "source.fixAll": "explicit",
+    "source.fixAll.ts": "never"
   },
   "editor.formatOnSave": false,
   "typescript.tsdk": "node_modules/typescript/lib",

@@ -19,22 +19,22 @@
   "author": "One <imonenext@gmail.com> (https://github.com/imoneoi)",
   "type": "module",
   "exports": {
-    "default": "./dist/index.module.js",
-    "import": "./dist/index.module.js",
-    "require": "./dist/index.cjs.js"
+    "default": "./dist/tokenizer.module.js",
+    "import": "./dist/tokenizer.module.js",
+    "require": "./dist/tokenizer.cjs.js"
   },
-  "main": "dist/index.cjs",
-  "unpkg": "dist/index.umd.js",
-  "module": "dist/index.module.js",
-  "source": "src/index.ts",
-  "types": "dist/index.d.ts",
+  "main": "dist/tokenizer.cjs",
+  "unpkg": "dist/tokenizer.umd.js",
+  "module": "dist/tokenizer.module.js",
+  "source": "src/tokenizer.ts",
+  "types": "dist/tokenizer.d.ts",
   "scripts": {
     "build": "rimraf dist && microbundle",
     "dev": "microbundle watch",
     "lint": "eslint --ext .js,.ts .",
     "prepare": "husky install",
     "pretty": "prettier --config .prettierrc.json --check '**/*.{js,ts,json}'",
-    "test": "node test-mistral-tokenizer.js"
+    "test": "jest"
   },
   "lint-staged": {
     "*.{js,ts,json}": [
@@ -43,15 +43,18 @@
     ]
   },
   "devDependencies": {
+    "@types/jest": "^29.5.11",
     "@typescript-eslint/eslint-plugin": "^6.19.0",
     "@typescript-eslint/parser": "^6.19.0",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "husky": "^8.0.0",
+    "jest": "^29.7.0",
     "lint-staged": "^15.2.0",
     "microbundle": "^0.15.1",
     "prettier": "^3.2.4",
     "rimraf": "^5.0.5",
+    "ts-jest": "^29.1.1",
     "typescript": "^5.3.3"
   }
 }
